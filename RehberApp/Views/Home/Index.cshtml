@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Rehber>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center text-primary">
+                    TKTUZLA TELEFON REHBER LİSTESİ
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <input class="form-control" id="txtName" type="text" placeholder="Kişi arama alanı">
+            </div>
+            <div class="col-sm-2">
+                <button id="actionExportVCF"
+                    type="add"
+                    class="form-control btn btn-outline-primary">Dışarı Aktar
+                </button>
+            </div>
+            <div class="col-sm-2">
+                <button id="printDoc"
+                        type="add"
+                        class="form-control btn btn-outline-primary">
+                    Yazdır
+                </button>
+            </div>
+        </div>
+        <iframe name="print_frame" width="0" height="0" frameborder="0" src=""></iframe>
+        </br>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="outline: thin solid;">
+                                #
+                            </th>
+                            <th style="outline: thin solid;">
+                                Kişi Adı
+                            </th>
+                            <th style="outline: thin solid;">
+                                Departman
+                            </th>
+                            <th style="outline: thin solid;">
+                                Dahili Numarası
+                            </th>
+                            <th style="outline: thin solid;">
+                                Cep Numarası
+                            </th>
+                            <th style="outline: thin solid;">
+                                Kısa Kodu
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="numbertable">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="outline: thin solid;">@item.id</td>
+                                <td style="outline: thin solid;">@item.name</td>
+                                <td style="outline: thin solid;">@item.department</td>
+                                <td  style="outline: thin solid;" class="green-color">@item.internalNumber</td>
+                                <td style="outline: thin solid;">@item.mobileNumber</td>
+                                <td  style="outline: thin solid;" class="red-color">@item.shortCode</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
