@@ -1,8 +1,138 @@
-﻿@model object
+﻿@model List<Rehber>
 
-@{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
-}
-
-<h2>title</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-11">
+            <h3 class="text-center text-primary">
+                TKTUZLA TELEFON REHBER LİSTESİ
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <input class="form-control" id="txtName" type="text" placeholder="Kişi arama alanı">
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-12">
+            <button id="btnAddNewPerson"
+                    type="add"
+                    class="form-control btn btn-outline-primary pull-right">
+                Yeni Kişi Ekle
+            </button>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        @await Component.InvokeAsync("AddPersonal")
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Kişi Adı
+                    </th>
+                    <th>
+                        Departman
+                    </th>
+                    <th>
+                        Dahili Numarası
+                    </th>
+                    <th>
+                        Cep Numarası
+                    </th>
+                    <th>
+                        Kısa Kodu
+                    </th>
+                    <th>
+                        İşlemler
+                    </th>
+                </tr>
+                </thead>
+                <tbody class="numbertable">
+                @{ int i = 1;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.name</td>
+                        <td>@item.department</td>
+                        <td>@item.internalNumber</td>
+                        <td>@item.mobileNumber</td>
+                        <td>@item.shortNumber</td>
+                        <td>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <button data-toggle="modal" data-target="#modal$Key@i"
+                                                @* data-whatever="@mdo" *@
+                                                type="button"
+                                                class="btn-sm btn btn-outline-primary btn-danger">Düzenle</button>
+                                        <button 
+                                            type="button"
+                                            class="btn-sm btn btn-outline-danger btn delete">Sil</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="#modal$Key@i"
+                                 tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Kayıt Düzenleme</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="post" asp-controller="Admin" asp-action="Update">
+                                                <div class="form-group">
+                                                    <label for="txtKisiAdi" class="col-form-label">Kişi Adı :</label>
+                                                    <input value="<?php echo $number->name; ?>" type="text" class="form-control" name="txtKisiAdi">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="txtDepartment" class="col-form-label">Departman:</label>
+                                                    <input value="<?php echo $number->department; ?>" type="text" class="form-control" name="txtDepartment">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="txtLocalNumber" class="col-form-label">Dahili Numara:</label>
+                                                    <input value="<?php echo $number->localnumber; ?>" type="text" class="form-control" name="txtLocalNumber">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="txtMobileNumber" class="col-form-label">Cep Numarası:</label>
+                                                    <input value="<?php echo $number->mobilenumber; ?>" type="text" class="form-control" name="txtMobileNumber">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="txtShortnumber" class="col-form-label">Kısa Kodu:</label>
+                                                    <input value="<?php echo $number->shortnumber; ?>" type="text" class="form-control" name="txtShortnumber">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox">
+                                                    <label class="form-check-label" for="isMudur">Müdür</label>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                                    <button type="submit" class="btn btn-primary">Gönder</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    i++;
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

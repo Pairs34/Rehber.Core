@@ -19,10 +19,5 @@ namespace RehberApp.Controllers
             List<Rehber> allRehber = _rehberRepository.GetAll();
             return View(allRehber);
         }
-
-        public IActionResult Admin()
-        {
-            return View();
-        }
     }
 }

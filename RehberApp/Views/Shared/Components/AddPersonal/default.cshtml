@@ -1,0 +1,43 @@
+﻿@model Rehber
+<form class="col" method="post" asp-controller="Admin" asp-action="AddContact">
+    <div class="row">
+        <div class="col">
+            <input placeholder="Kişi Adı" asp-for="name" class="form-control" />
+        </div>
+        <div class="col">
+            <input placeholder="Departman" class="form-control" asp-for="department">
+        </div>
+        <div class="col">
+            <input placeholder="Kısa Kod" type="text" class="form-control" name="txtShortnumber">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <input placeholder="Dahili Numarası" type="text" class="form-control" asp-for="internalNumber">
+        </div>
+        <div class="col">
+            <input placeholder="Cep Numarası" type="text" class="form-control" asp-for="mobileNumber">
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="form-check-label" for="isMudur">
+                        Müdür
+                    </label>
+                </div>
+                <div class="col-sm-2">
+                    <input class="form-control form-check-inline" asp-for="isManager">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <button name="action"
+                    type="add"
+                    class="form-control btn btn-outline-primary">Ekle</button>
+        </div>
+    </div>
+</form>
