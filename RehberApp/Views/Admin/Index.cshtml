@@ -13,7 +13,7 @@
             <input class="form-control" id="txtName" type="text" placeholder="Kişi arama alanı">
         </div>
     </div>
-    <br/>
+    <br />
     <div class="row">
         <div class="col-md-12">
             <button id="btnAddNewPerson"
@@ -23,116 +23,117 @@
             </button>
         </div>
     </div>
-    <br/>
+    <br />
     <div class="row">
         @await Component.InvokeAsync("AddPersonal")
     </div>
-    
+
     <div class="row">
         <div class="col-md-12">
             <table class="table table-hover table-bordered">
                 <thead>
-                <tr>
-                    <th>
-                        #
-                    </th>
-                    <th>
-                        Kişi Adı
-                    </th>
-                    <th>
-                        Departman
-                    </th>
-                    <th>
-                        Dahili Numarası
-                    </th>
-                    <th>
-                        Cep Numarası
-                    </th>
-                    <th>
-                        Kısa Kodu
-                    </th>
-                    <th>
-                        İşlemler
-                    </th>
-                </tr>
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            Kişi Adı
+                        </th>
+                        <th>
+                            Departman
+                        </th>
+                        <th>
+                            Dahili Numarası
+                        </th>
+                        <th>
+                            Cep Numarası
+                        </th>
+                        <th>
+                            Kısa Kodu
+                        </th>
+                        <th>
+                            İşlemler
+                        </th>
+                    </tr>
                 </thead>
                 <tbody class="numbertable">
-                @{ int i = 1;}
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@i</td>
-                        <td>@item.name</td>
-                        <td>@item.department</td>
-                        <td>@item.internalNumber</td>
-                        <td>@item.mobileNumber</td>
-                        <td>@item.shortNumber</td>
-                        <td>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <button data-toggle="modal" data-target="#modal$Key@i"
-                                                @* data-whatever="@mdo" *@
-                                                type="button"
-                                                class="btn-sm btn btn-outline-primary btn-danger">Düzenle</button>
-                                        <button 
-                                            type="button"
-                                            class="btn-sm btn btn-outline-danger btn delete">Sil</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal fade" id="#modal$Key@i"
-                                 tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Kayıt Düzenleme</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form method="post" asp-controller="Admin" asp-action="Update">
-                                                <div class="form-group">
-                                                    <label for="txtKisiAdi" class="col-form-label">Kişi Adı :</label>
-                                                    <input value="<?php echo $number->name; ?>" type="text" class="form-control" name="txtKisiAdi">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="txtDepartment" class="col-form-label">Departman:</label>
-                                                    <input value="<?php echo $number->department; ?>" type="text" class="form-control" name="txtDepartment">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="txtLocalNumber" class="col-form-label">Dahili Numara:</label>
-                                                    <input value="<?php echo $number->localnumber; ?>" type="text" class="form-control" name="txtLocalNumber">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="txtMobileNumber" class="col-form-label">Cep Numarası:</label>
-                                                    <input value="<?php echo $number->mobilenumber; ?>" type="text" class="form-control" name="txtMobileNumber">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="txtShortnumber" class="col-form-label">Kısa Kodu:</label>
-                                                    <input value="<?php echo $number->shortnumber; ?>" type="text" class="form-control" name="txtShortnumber">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="checkbox">
-                                                    <label class="form-check-label" for="isMudur">Müdür</label>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                                                    <button type="submit" class="btn btn-primary">Gönder</button>
-                                                </div>
-                                            </form>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="id">@item.id</td>
+                            <td class="name">@item.name</td>
+                            <td class="department">@item.department</td>
+                            <td class="internal-number">@item.internalNumber</td>
+                            <td class="mobile-number">@item.mobileNumber</td>
+                            <td class="short-number">@item.shortNumber</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <a type="button"
+                                                    class="btn-sm btn btn-outline-primary btn-danger contactEdit">
+                                                Düzenle
+                                            </a>
+                                            <a type="button"
+                                                    class="btn-sm btn btn-outline-danger btn delete">
+                                                Sil
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    i++;
-                }
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEdit"
+         tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Kayıt Düzenleme</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-controller="Admin" asp-action="Update">
+                        <div class="form-group">
+                            <label for="txtKisiAdi" class="col-form-label">Kişi Adı :</label>
+                            <input type="text" class="form-control" id="txtKisiAdi">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtDepartment" class="col-form-label">Departman:</label>
+                            <input type="text" class="form-control" id="txtDepartment">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtLocalNumber" class="col-form-label">Dahili Numara:</label>
+                            <input type="text" class="form-control" id="txtLocalNumber">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtMobileNumber" class="col-form-label">Cep Numarası:</label>
+                            <input type="text" class="form-control" id="txtMobileNumber">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtShortnumber" class="col-form-label">Kısa Kodu:</label>
+                            <input type="text" class="form-control" id="txtShortnumber">
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="isMudur">
+                            <label class="form-check-label" for="isMudur">Müdür</label>
+                        </div>
+                        <input type="hidden" id="kisiId">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                            <button type="submit" class="btn btn-primary">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

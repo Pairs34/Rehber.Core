@@ -44,7 +44,7 @@ namespace RehberApp
             });
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
+                endpoints.MapControllerRoute("default", "{controller=Admin}/{action=Index}");
             });
         }
     }
