@@ -8,7 +8,7 @@ namespace RehberApp.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("server=(localdb)\\mssqllocaldb;database=RehberDB;integrated security=true;");
+            optionsBuilder.UseSqlServer("server=awssqlserver.cdib5b6yqxru.us-east-1.rds.amazonaws.com;database=RehberDB;user=admin;password=Yldrm!34");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
